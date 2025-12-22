@@ -12,4 +12,6 @@ public interface StaffService {
     Staff getStaffById(Long id);
 
     void deleteStaff(Long id);
+
+    long getStaffCount();
 }
