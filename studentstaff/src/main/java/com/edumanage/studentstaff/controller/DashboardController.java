@@ -1,12 +1,12 @@
 package com.edumanage.studentstaff.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;import org.springframework.web.bind.annotation.GetMapping;
 
-import com.edumanage.studentstaff.service.StudentService;
 import com.edumanage.studentstaff.service.StaffService;
+import com.edumanage.studentstaff.service.StudentService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class DashboardController {
@@ -18,11 +18,13 @@ public class DashboardController {
     private StaffService staffService;
 
     @GetMapping("/dashboard")
-    public String showDashboard(Model model) {
+    public String dashboard(HttpSession session) {
 
-        model.addAttribute("studentCount", studentService.getStudentCount());
-        model.addAttribute("staffCount", staffService.getStaffCount());
-
-        return "dashboard";
+    if (session.getAttribute("admin") == null) {
+        return "redirect:/login";
     }
+
+    return "dashboard";
+}
+
 }

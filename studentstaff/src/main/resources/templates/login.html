@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <title>Login</title>
+    <title>Admin Login</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
-<body class="container mt-5">
+<body class="bg-light">
+
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <div class="card p-4">
+            <div class="card p-4 shadow">
                 <h4 class="text-center mb-3">Admin Login</h4>
-                <form>
-                    <input type="text" class="form-control mb-3" placeholder="Username">
-                    <input type="password" class="form-control mb-3" placeholder="Password">
-                    <button class="btn btn-primary w-100">Login</button>
+
+                <form th:action="@{/login}" method="post">
+                    <input name="username" class="form-control mb-3" placeholder="Username">
+                    <input name="password" type="password" class="form-control mb-3" placeholder="Password">
+                    <button class="btn btn-dark w-100">Login</button>
                 </form>
+
+                <p class="text-danger mt-2" th:if="${param.error}">
+                    Invalid credentials
+                </p>
             </div>
         </div>
     </div>
-    
+</div>
+
 </body>
 </html>
